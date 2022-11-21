@@ -7,11 +7,7 @@ import com.donghao.register.demo.register.client.pojo.RegisterRequest;
 import com.donghao.register.demo.register.client.pojo.RegisterResponse;
 import com.sun.org.slf4j.internal.Logger;
 import com.sun.org.slf4j.internal.LoggerFactory;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
+import okhttp3.*;
 
 import java.io.IOException;
 
@@ -60,6 +56,12 @@ public class HttpSender {
         return res;
     }
 
+    /**
+     * 发送心跳
+     *
+     * @param req 入参
+     * @return http心跳请求返回值
+     */
     public RegisterResponse heatbeat(HeartbeatRequest req) {
         /*
         发送请求进行心跳

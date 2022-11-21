@@ -1,4 +1,4 @@
-package client.tools;
+package com.donghao.register.demo.register.client.tools;
 
 import com.alibaba.fastjson.JSONObject;
 import com.donghao.register.demo.register.client.constants.ResponseStatusConstants;

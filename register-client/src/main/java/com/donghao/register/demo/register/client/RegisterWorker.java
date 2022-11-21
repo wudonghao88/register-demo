@@ -1,10 +1,10 @@
-package client;
+package com.donghao.register.demo.register.client;
 
+import com.donghao.register.demo.register.client.tools.HttpSender;
 import com.donghao.register.demo.register.client.constants.ResponseCodeConstants;
 import com.donghao.register.demo.register.client.pojo.HeartbeatRequest;
 import com.donghao.register.demo.register.client.pojo.RegisterRequest;
 import com.donghao.register.demo.register.client.pojo.RegisterResponse;
-import com.donghao.register.demo.register.client.tools.HttpSender;
 import com.sun.org.slf4j.internal.Logger;
 import com.sun.org.slf4j.internal.LoggerFactory;
 

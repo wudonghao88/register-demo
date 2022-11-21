@@ -1,4 +1,4 @@
-package client.constants;
+package com.donghao.register.demo.register.client.constants;
 
 public class ResponseCodeConstants {
     public static final Integer SUCCESS = 100;

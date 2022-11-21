@@ -1,4 +1,4 @@
-package client;
+package com.donghao.register.demo.register.client;
 
 import java.util.UUID;
 

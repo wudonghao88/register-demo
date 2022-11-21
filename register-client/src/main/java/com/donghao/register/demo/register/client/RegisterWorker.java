@@ -42,7 +42,7 @@ public class RegisterWorker extends Thread {
     public RegisterWorker(String serviceInstanceId) {
         httpSender = new HttpSender();
         finishedRegister = false;
-        serviceInstanceId = serviceInstanceId;
+        this.serviceInstanceId = serviceInstanceId;
     }
 
     @Override

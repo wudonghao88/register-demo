@@ -1,5 +1,7 @@
 package com.donghao.register.demo.register.client;
 
+import com.donghao.register.demo.register.client.worker.RegisterWorker;
+
 import java.util.UUID;
 
 /**

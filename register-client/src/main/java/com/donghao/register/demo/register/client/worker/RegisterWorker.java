@@ -1,4 +1,4 @@
-package com.donghao.register.demo.register.client;
+package com.donghao.register.demo.register.client.worker;
 
 import com.donghao.register.demo.register.client.tools.HttpSender;
 import com.donghao.register.demo.register.client.constants.ResponseCodeConstants;

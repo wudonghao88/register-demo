@@ -47,6 +47,20 @@ public class RegisterController {
     public HeartbeatResponse heartbeat(HeartbeatRequest request) {
         System.out.println("心跳操作：服务实例："+request.getServiceInstanceId()+"心跳请求续约");
         HeartbeatResponse response = new HeartbeatResponse();
+        try{
+            ServiceInstance serviceInstance = registry.getServiceInstance(request.getServiceName(), request.getServiceInstanceId());
+            if (serviceInstance == null) {
+                response.setStatus(ResponseStatusConstants.FAILURE);
+                return response;
+            }
+            //续约
+            Lease lease = serviceInstance.getLease();
+            lease.reNew();
+            response.setStatus(ResponseStatusConstants.SUCCESS);
+        }catch (Exception e) {
+            response.setStatus(ResponseStatusConstants.FAILURE);
+            return response;
+        }
         return response;
     }
 }

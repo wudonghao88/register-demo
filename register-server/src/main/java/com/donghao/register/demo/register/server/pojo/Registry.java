@@ -36,5 +36,7 @@ public class Registry {
             registry.put(serviceInstance.getServiceName(), ServiceInstanceMap);
         }
         ServiceInstanceMap.put(serviceInstance.getServiceInstanceId(), serviceInstance);
+        System.out.println("服务实例：" + serviceInstance.toString() + " 完成注册");
+        System.out.println("注册表：" + registry.toString());
     }
 }

@@ -38,4 +38,16 @@ public class ServiceInstance {
      * 契约
      */
     private Lease lease;
+
+    @Override
+    public String toString() {
+        return "ServiceInstance{" +
+                "serviceName='" + serviceName + '\'' +
+                ", ip='" + ip + '\'' +
+                ", hostName='" + hostName + '\'' +
+                ", port=" + port +
+                ", serviceInstanceId='" + serviceInstanceId + '\'' +
+                ", lease=" + lease +
+                '}';
+    }
 }

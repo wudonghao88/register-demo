@@ -11,6 +11,7 @@
     <modules>
         <module>register-client</module>
         <module>register-server</module>
+        <module>register-common</module>
     </modules>
 
     <properties>

@@ -68,7 +68,7 @@ public class ServiceInstance {
     @Data
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class Lease {
+    private class Lease {
         /**
          * 最近一次心跳的时间
          */
@@ -76,7 +76,7 @@ public class ServiceInstance {
 
         public void renew(){
             this.latestHeartbeatTime = System.currentTimeMillis();
-            System.out.println("续约成功！");
+            System.out.println("服务实例："+serviceInstanceId+"续约成功！续约时间为："+ latestHeartbeatTime);
         }
     }
 }

@@ -10,7 +10,6 @@ import lombok.experimental.Accessors;
  * 包含了一个服务实例的所有信息。
  */
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 @Accessors(chain = true)
 public class ServiceInstance {
@@ -39,6 +38,16 @@ public class ServiceInstance {
      */
     private Lease lease;
 
+    public ServiceInstance() {
+        this.lease = new Lease();
+    }
+
+    /**
+     * 续约心跳时间
+     */
+    public void renew(){
+        lease.renew();
+    }
     @Override
     public String toString() {
         return "ServiceInstance{" +
@@ -49,5 +58,25 @@ public class ServiceInstance {
                 ", serviceInstanceId='" + serviceInstanceId + '\'' +
                 ", lease=" + lease +
                 '}';
+    }
+    /**
+     * 契约
+     * 维护了服务实例和当前的注册中心服务的联系
+     *
+     * @author donghao.wu
+     */
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Lease {
+        /**
+         * 最近一次心跳的时间
+         */
+        private Long latestHeartbeatTime= System.currentTimeMillis();
+
+        public void renew(){
+            this.latestHeartbeatTime = System.currentTimeMillis();
+            System.out.println("续约成功！");
+        }
     }
 }

@@ -29,7 +29,6 @@ public class RegisterController {
             serviceInstance.setHostName(request.getHostName());
             serviceInstance.setPort(request.getPort());
             serviceInstance.setServiceInstanceId(request.getServiceInstanceId());
-            serviceInstance.setLease(new Lease());
             registry.register(serviceInstance);
             registerResponse.setStatus(ResponseStatusConstants.SUCCESS);
         } catch (Exception e) {
@@ -54,8 +53,7 @@ public class RegisterController {
                 return response;
             }
             //续约
-            Lease lease = serviceInstance.getLease();
-            lease.reNew();
+            serviceInstance.renew();
             response.setStatus(ResponseStatusConstants.SUCCESS);
         }catch (Exception e) {
             response.setStatus(ResponseStatusConstants.FAILURE);

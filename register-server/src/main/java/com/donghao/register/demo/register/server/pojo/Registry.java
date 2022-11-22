@@ -38,22 +38,47 @@ public class Registry {
 
     /**
      * 根据服务名称和实例id获取 实例信息
-     * @param serviceName 服务名称
+     *
+     * @param serviceName       服务名称
      * @param serviceInstanceId 实例id
      * @return 实例信息
      */
-    public ServiceInstance getServiceInstance(String serviceName,String serviceInstanceId){
+    public ServiceInstance getServiceInstance(String serviceName, String serviceInstanceId) {
         Map<String, ServiceInstance> serviceInstanceMap = registry.get(serviceName);
-        if (serviceInstanceMap == null){
-            System.out.println("心跳续约失败！服务名称为："+serviceName + "的服务没有注册到注册中心。");
+        if (serviceInstanceMap == null) {
+            System.out.println("心跳续约失败！服务名称为：" + serviceName + "的服务没有注册到注册中心。");
             return null;
         }
         ServiceInstance serviceInstance = serviceInstanceMap.get(serviceInstanceId);
-        if (serviceInstance  ==null){
-            System.out.println("心跳续约失败！服务名称为："+serviceName + "且实例为："+serviceInstanceId+"服务没有注册到注册中心。");
+        if (serviceInstance == null) {
+            System.out.println("心跳续约失败！服务名称为：" + serviceName + "且实例为：" + serviceInstanceId + "服务没有注册到注册中心。");
             return null;
         }
         return serviceInstanceMap.get(serviceInstance);
 
+    }
+
+    /**
+     * 获取注册表信息
+     *
+     * @return 注册表信息
+     */
+    public Map<String, Map<String, ServiceInstance>> getRegistry() {
+        return registry;
+    }
+
+    /**
+     *
+     */
+    public void remove() {
+        // TODO: 2022/11/22  方法移动到Registry内部
+//        //长于过期时间则 认为服务已经宕机 从注册表中删除该服务实例
+//        serviceInstanceMap.remove(serviceInstance.getServiceInstanceId());
+//        if (serviceInstanceMap == null || serviceInstanceMap.size() <= 0) {
+//            registryMap.remove(serviceName);
+//            if (registryMap == null || registryMap.size() < 0) {
+//                registryMap = new HashMap<>();
+//            }
+//        }
     }
 }

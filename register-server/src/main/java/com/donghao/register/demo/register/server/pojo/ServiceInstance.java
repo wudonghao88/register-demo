@@ -48,6 +48,15 @@ public class ServiceInstance {
     public void renew(){
         lease.renew();
     }
+
+    /**
+     * 校验服务实例心跳续约时间是否长于过期时间
+     * @param ttl 过期时间
+     * @return 是否过期
+     */
+    public boolean verifyLoseEfficacy(Long ttl){
+        return (System.currentTimeMillis()-lease.getLatestHeartbeatTime())>ttl;
+    }
     @Override
     public String toString() {
         return "ServiceInstance{" +

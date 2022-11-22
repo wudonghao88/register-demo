@@ -9,9 +9,17 @@ import com.donghao.register.demo.register.server.pojo.*;
  * jersey:restful框架，可以接收http请求
  */
 public class RegisterController {
-
+    /**
+     * 注册中心
+     */
     private Registry registry = Registry.getInstance();
 
+    /**
+     * 注册服务
+     *
+     * @param request request
+     * @return 返回结果
+     */
     public RegisterResponse register(RegisterRequest request) {
         RegisterResponse registerResponse = new RegisterResponse();
         try {
@@ -28,5 +36,17 @@ public class RegisterController {
             registerResponse.setStatus(ResponseStatusConstants.FAILURE);
         }
         return registerResponse;
+    }
+
+    /**
+     * 心跳续约
+     *
+     * @param request request
+     * @return 返回结果
+     */
+    public HeartbeatResponse heartbeat(HeartbeatRequest request) {
+        System.out.println("心跳操作：服务实例："+request.getServiceInstanceId()+"心跳请求续约");
+        HeartbeatResponse response = new HeartbeatResponse();
+        return response;
     }
 }

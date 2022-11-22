@@ -19,4 +19,8 @@ public class HeartbeatRequest {
      * 服务实例id
      */
     private String serviceInstanceId;
+    /**
+     * 服务名称
+     */
+    private String serviceName;
 }

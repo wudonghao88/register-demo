@@ -100,6 +100,7 @@ public class RegisterClient {
                 if (finishedRegister) {
                     HeartbeatRequest heartbeat = new HeartbeatRequest();
                     heartbeat.setServiceInstanceId(serviceInstanceId);
+                    heartbeat.setServiceName(SERVICE_NAME);
                     while (true) {
                         // 不停地发送心跳
                         try {

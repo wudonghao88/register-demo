@@ -5,6 +5,7 @@ import com.donghao.register.demo.register.client.constants.ResponseStatusConstan
 import com.donghao.register.demo.register.client.pojo.HeartbeatRequest;
 import com.donghao.register.demo.register.client.pojo.RegisterRequest;
 import com.donghao.register.demo.register.client.pojo.RegisterResponse;
+import com.donghao.register.demo.register.common.constants.ResponseStatusConstants;
 import com.sun.org.slf4j.internal.Logger;
 import com.sun.org.slf4j.internal.LoggerFactory;
 import okhttp3.*;
@@ -12,6 +13,7 @@ import okhttp3.*;
 import java.io.IOException;
 
 import static com.donghao.register.demo.register.client.constants.ResponseCodeConstants.FAILURE_TWO;
+import static com.donghao.register.demo.register.common.constants.ResponseCodeConstants.FAILURE_TWO;
 
 /**
  * 负责发送http请求的组件

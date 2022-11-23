@@ -43,8 +43,8 @@ public class ServiceAliveMonitor {
             while (true) {
                 try {
                     registryMap = registry.getRegistry();
-                    if (registryMap != null || registryMap.size() > 0) {
-                        Thread.sleep(60);
+                    if (registryMap == null || registryMap.size() == 0) {
+                        Thread.sleep(60 * 1000L);
                         continue;
                     }
                     for (String serviceName : registryMap.keySet()) {
@@ -62,7 +62,7 @@ public class ServiceAliveMonitor {
                             }
                         }
                     }
-                    Thread.sleep(60);
+                    Thread.sleep(60 * 1000L);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

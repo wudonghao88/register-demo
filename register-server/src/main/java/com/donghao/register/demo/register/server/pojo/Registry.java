@@ -68,17 +68,25 @@ public class Registry {
     }
 
     /**
+     * 清除已经宕机的服务器实例
      *
+     * @param serviceInstance serviceInstance
      */
-    public void remove() {
-        // TODO: 2022/11/22  方法移动到Registry内部
-//        //长于过期时间则 认为服务已经宕机 从注册表中删除该服务实例
-//        serviceInstanceMap.remove(serviceInstance.getServiceInstanceId());
-//        if (serviceInstanceMap == null || serviceInstanceMap.size() <= 0) {
-//            registryMap.remove(serviceName);
-//            if (registryMap == null || registryMap.size() < 0) {
-//                registryMap = new HashMap<>();
-//            }
-//        }
+    public void remove(ServiceInstance serviceInstance) {
+        if (serviceInstance == null) {
+            return;
+        }
+        Map<String, ServiceInstance> serviceInstanceMap = registry.get(serviceInstance.getServiceName());
+
+        if (serviceInstanceMap == null || serviceInstanceMap.size() == 0) {
+            return;
+        }
+        serviceInstanceMap.remove(serviceInstance.getServiceInstanceId());
+        if (serviceInstanceMap == null || serviceInstanceMap.size() <= 0) {
+            registry.remove(serviceInstance.getServiceName());
+            if (registry == null || registry.size() < 0) {
+                registry = new HashMap<>();
+            }
+        }
     }
 }

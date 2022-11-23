@@ -15,7 +15,18 @@ public class ServiceAliveMonitor {
      * 服务实例过期时间
      */
     private static final Long TTL = 90 * 1000L;
-    private Daemon daemon = new Daemon();
+    private Daemon daemon;
+
+    public ServiceAliveMonitor() {
+        this.daemon = new Daemon();
+        /*
+        设置了这个标志位，就代表这个线程是一个deamon线程，后台线程
+        非deamon线程，我们一般叫做工作线程
+        如果工作线程（main线程）结束了，deamon线程不会阻止jvm进程退出
+        deamon线程会跟着jvm一起太鬼畜
+         */
+        daemon.setDaemon(true);
+    }
 
     /**
      * 启动后台线程

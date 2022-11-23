@@ -50,6 +50,8 @@ public class ServiceAliveMonitor {
          */
         @Override
         public void run() {
+            System.out.println(Thread.currentThread().getName() + "线程的线程组是：" + Thread.currentThread().getThreadGroup());
+
             Map<String, Map<String, ServiceInstance>> registryMap;
             while (true) {
                 try {

@@ -11,6 +11,7 @@ import java.util.UUID;
  */
 public class RegisterServer {
     public static void main(String[] args) {
+        System.out.println(Thread.currentThread().getName() + "线程的线程组是：" + Thread.currentThread().getThreadGroup());
         RegisterController controller = new RegisterController();
         //模拟发起注册请求
         RegisterRequest request = new RegisterRequest();

@@ -45,29 +45,25 @@ public class ServiceInstance {
     /**
      * 续约心跳时间
      */
-    public void renew(){
+    public void renew() {
         lease.renew();
     }
 
     /**
      * 校验服务实例心跳续约时间是否长于过期时间
+     *
      * @param ttl 过期时间
      * @return 是否过期
      */
-    public boolean verifyLoseEfficacy(Long ttl){
-        return (System.currentTimeMillis()-lease.getLatestHeartbeatTime())>ttl;
+    public boolean verifyLoseEfficacy(Long ttl) {
+        if ((System.currentTimeMillis() - lease.getLatestHeartbeatTime()) > ttl) {
+            System.out.println("服务实例不在存活：服务名称-" + this.serviceName + "\t实例-" + this.serviceInstanceId);
+            return false;
+        }
+        System.out.println("服务实例存活：服务名称-" + this.serviceName + "\t实例-" + this.serviceInstanceId);
+        return true;
     }
-    @Override
-    public String toString() {
-        return "ServiceInstance{" +
-                "serviceName='" + serviceName + '\'' +
-                ", ip='" + ip + '\'' +
-                ", hostName='" + hostName + '\'' +
-                ", port=" + port +
-                ", serviceInstanceId='" + serviceInstanceId + '\'' +
-                ", lease=" + lease +
-                '}';
-    }
+
     /**
      * 契约
      * 维护了服务实例和当前的注册中心服务的联系
@@ -81,11 +77,11 @@ public class ServiceInstance {
         /**
          * 最近一次心跳的时间
          */
-        private Long latestHeartbeatTime= System.currentTimeMillis();
+        private Long latestHeartbeatTime = System.currentTimeMillis();
 
-        public void renew(){
+        public void renew() {
             this.latestHeartbeatTime = System.currentTimeMillis();
-            System.out.println("服务实例："+serviceInstanceId+"续约成功！续约时间为："+ latestHeartbeatTime);
+            System.out.println("服务实例：" + serviceInstanceId + "续约成功！续约时间为：" + latestHeartbeatTime);
         }
     }
 }

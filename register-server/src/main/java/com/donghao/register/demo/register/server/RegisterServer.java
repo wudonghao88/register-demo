@@ -1,6 +1,7 @@
 package com.donghao.register.demo.register.server;
 
 import com.donghao.register.demo.register.server.controller.RegisterController;
+import com.donghao.register.demo.register.server.monitor.ServiceAliveMonitor;
 import com.donghao.register.demo.register.server.pojo.RegisterRequest;
 
 import java.util.UUID;
@@ -19,6 +20,9 @@ public class RegisterServer {
         request.setPort(9000);
         request.setServiceInstanceId(UUID.randomUUID().toString().replaceAll("-", ""));
         controller.register(request);
+        //服务器实例监测
+        ServiceAliveMonitor serviceAliveMonitor = new ServiceAliveMonitor();
+        serviceAliveMonitor.start();
         while (true) {
             try {
                 Thread.sleep(30 * 1000L);

@@ -17,6 +17,9 @@ public class ServiceAliveMonitor {
     private static final Long TTL = 90 * 1000L;
     private Daemon daemon = new Daemon();
 
+    /**
+     * 启动后台线程
+     */
     public void start() {
         daemon.start();
     }

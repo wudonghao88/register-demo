@@ -88,5 +88,6 @@ public class Registry {
                 registry = new HashMap<>();
             }
         }
+        System.out.println(this.getClass().getName() + ".remove:服务名称为" + serviceInstance.getServiceName() + "下的实例：" + serviceInstance.getServiceInstanceId() + "已宕机，现在成功从注册表中删除.现在服务器注册表内容为：" + registry.toString());
     }
 }

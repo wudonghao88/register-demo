@@ -16,8 +16,8 @@ public class VolatileDemo {
                 int localFlag = flag;
                 while (true) {
                     if (localFlag != flag) {
-                        System.out.println("读取到了修改后的标志位：" + flag);
                         localFlag = flag;
+                        System.out.println("读取到了修改后的标志位：" + flag);
                     }
                 }
             }
@@ -31,8 +31,8 @@ public class VolatileDemo {
             public void run() {
                 int localFlag = flag;
                 while (true) {
-                    System.out.println("标志位被修改为了：" + ++localFlag);
                     flag = localFlag;
+                    System.out.println("标志位被修改为了：" + ++localFlag);
                     try {
                         TimeUnit.SECONDS.sleep(2);
                     } catch (Exception e) {

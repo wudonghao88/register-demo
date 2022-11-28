@@ -23,7 +23,7 @@ public class ServiceAliveMonitor {
         设置了这个标志位，就代表这个线程是一个deamon线程，后台线程
         非deamon线程，我们一般叫做工作线程
         如果工作线程（main线程）结束了，deamon线程不会阻止jvm进程退出
-        deamon线程会跟着jvm一起太鬼畜
+        deamon线程会跟jvm一起关闭
          */
         daemon.setDaemon(true);
     }

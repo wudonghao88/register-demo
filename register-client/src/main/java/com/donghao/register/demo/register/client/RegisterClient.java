@@ -42,7 +42,7 @@ public class RegisterClient {
   /**
    * http通讯组件
    */
-  private static volatile boolean isRunning;
+  private volatile boolean isRunning;
 
   public RegisterClient() {
     httpSender = new HttpSender();

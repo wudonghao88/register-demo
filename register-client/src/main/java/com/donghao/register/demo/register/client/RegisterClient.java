@@ -17,6 +17,10 @@ public class RegisterClient {
 
   private String serviceInstanceId;
 
+  private RegisterWorker registerWorker;
+
+  private HeartbeatWorker heartbeatWorker;
+
   public static final String SERVICE_NAME = "inventory-service";
 
   public static final String IP = "127.0.0.1";
@@ -45,23 +49,28 @@ public class RegisterClient {
     finishedRegister = false;
     isRunning = true;
     this.serviceInstanceId = UUID.randomUUID().toString().replace("-", "");
+    this.registerWorker = new RegisterWorker();
+    this.heartbeatWorker = new HeartbeatWorker();
   }
 
   public void start() {
-    RegisterWorker registerWorker = new RegisterWorker();
-    HeartbeatWorker heartbeatWorker = new HeartbeatWorker();
     try {
       /*
        * 一旦启动组件之后:
        * 1.想register-server发送请求,注册这个服务
        * 2.注册成功后,开启另一个进程发送心跳
        */
-      registerWorker.start();
-      registerWorker.join();
-      heartbeatWorker.start();
+      this.registerWorker.start();
+      this.registerWorker.join();
+      this.heartbeatWorker.start();
     } catch (InterruptedException e) {
       throw new RuntimeException(e);
     }
+  }
+
+  public void shutdown() {
+    isRunning = false;
+    this.heartbeatWorker.interrupt();
   }
 
   /**
@@ -109,7 +118,7 @@ public class RegisterClient {
         HeartbeatRequest heartbeat = new HeartbeatRequest();
         heartbeat.setServiceInstanceId(serviceInstanceId);
         heartbeat.setServiceName(SERVICE_NAME);
-        while (true) {
+        while (isRunning) {
           // 不停地发送心跳
           try {
             // 每隔30秒执行一次心跳

@@ -5,11 +5,11 @@ import static com.donghao.register.demo.register.common.constants.ResponseCodeCo
 import java.io.IOException;
 
 import com.alibaba.fastjson.JSONObject;
-import com.donghao.register.demo.register.client.pojo.HeartbeatRequest;
-import com.donghao.register.demo.register.client.pojo.RegisterRequest;
-import com.donghao.register.demo.register.client.pojo.RegisterResponse;
 import com.donghao.register.demo.register.common.constants.ResponseStatusConstants;
 
+import com.donghao.register.demo.register.common.pojo.HeartbeatRequest;
+import com.donghao.register.demo.register.common.pojo.RegisterRequest;
+import com.donghao.register.demo.register.common.pojo.RegisterResponse;
 import okhttp3.*;
 
 /**

@@ -2,11 +2,11 @@ package com.donghao.register.demo.register.client;
 
 import java.util.UUID;
 
-import com.donghao.register.demo.register.client.pojo.HeartbeatRequest;
-import com.donghao.register.demo.register.client.pojo.RegisterRequest;
-import com.donghao.register.demo.register.client.pojo.RegisterResponse;
 import com.donghao.register.demo.register.client.tools.HttpSender;
 import com.donghao.register.demo.register.common.constants.ResponseCodeConstants;
+import com.donghao.register.demo.register.common.pojo.HeartbeatRequest;
+import com.donghao.register.demo.register.common.pojo.RegisterRequest;
+import com.donghao.register.demo.register.common.pojo.RegisterResponse;
 
 /**
  * 在服务上被创建和启动,负责和register-server进行通信

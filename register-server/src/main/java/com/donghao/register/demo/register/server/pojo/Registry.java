@@ -1,5 +1,7 @@
 package com.donghao.register.demo.register.server.pojo;
 
+import com.donghao.register.demo.register.common.pojo.ServiceInstance;
+
 import java.util.HashMap;
 import java.util.Map;
 

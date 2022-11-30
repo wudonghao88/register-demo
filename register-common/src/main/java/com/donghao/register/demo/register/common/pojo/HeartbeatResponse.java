@@ -1,4 +1,4 @@
-package com.donghao.register.demo.register.server.pojo;
+package com.donghao.register.demo.register.common.pojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

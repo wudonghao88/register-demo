@@ -1,4 +1,4 @@
-package com.donghao.register.demo.register.client.pojo;
+package com.donghao.register.demo.register.common.pojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,7 +14,7 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @AllArgsConstructor
 @Accessors(chain = true)
-public class HeartbeatResponse {
+public class RegisterResponse {
     /**
      * 响应码:100,200,300
      */

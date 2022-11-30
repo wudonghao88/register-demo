@@ -1,8 +1,8 @@
 package com.donghao.register.demo.register.server;
 
+import com.donghao.register.demo.register.common.pojo.RegisterRequest;
 import com.donghao.register.demo.register.server.controller.RegisterController;
 import com.donghao.register.demo.register.server.monitor.ServiceAliveMonitor;
-import com.donghao.register.demo.register.server.pojo.RegisterRequest;
 
 import java.util.UUID;
 

@@ -2,8 +2,8 @@ package com.donghao.register.demo.register.server.monitor;
 
 import java.util.Map;
 
+import com.donghao.register.demo.register.common.pojo.ServiceInstance;
 import com.donghao.register.demo.register.server.pojo.Registry;
-import com.donghao.register.demo.register.server.pojo.ServiceInstance;
 
 /**
  * 微服务存货状态监控后台线程

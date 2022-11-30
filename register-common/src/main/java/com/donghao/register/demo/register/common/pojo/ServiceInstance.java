@@ -26,7 +26,7 @@ public class ServiceInstance {
   /**
    * 服务名称
    */
-  private String hostName;
+  private String hostname;
 
   /**
    * 端口号

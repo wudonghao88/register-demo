@@ -31,7 +31,7 @@ public class ClientCacheServiceRegistry {
   /**
    * 注册表信息
    */
-  private Map<String, Map<String, ServiceInstance>> registry = new HashMap<>();
+  private volatile Map<String, Map<String, ServiceInstance>> registry = new HashMap<>();
 
   public ClientCacheServiceRegistry(RegisterClient registerClient, HttpSender httpSender) {
     this.daemon = new Daemon();
@@ -47,6 +47,15 @@ public class ClientCacheServiceRegistry {
     this.daemon.interrupt();
   }
 
+  /**
+   * 获取服务注册表
+   * 
+   * @return 获取服务注册表
+   */
+  public Map<String, Map<String, ServiceInstance>> getRegistry() {
+    return registry;
+  }
+
   private class Daemon extends Thread {
     @Override
     public void run() {
@@ -54,6 +63,7 @@ public class ClientCacheServiceRegistry {
         // 从registry-server同步数据
 
         try {
+          registry = httpSender.fetchServiceRegistry();
           //
           Thread.sleep(SERVICE_REGISTRY_FETCH_INTERVAL);
         } catch (InterruptedException e) {

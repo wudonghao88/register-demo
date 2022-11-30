@@ -27,7 +27,7 @@ public class RegisterController {
       ServiceInstance serviceInstance = new ServiceInstance();
       serviceInstance.setServiceName(request.getServiceName());
       serviceInstance.setIp(request.getIp());
-      serviceInstance.setHostName(request.getHostName());
+      serviceInstance.setHostname(request.getHostName());
       serviceInstance.setPort(request.getPort());
       serviceInstance.setServiceInstanceId(request.getServiceInstanceId());
       registry.register(serviceInstance);

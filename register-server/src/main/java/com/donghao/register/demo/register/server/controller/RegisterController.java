@@ -1,5 +1,7 @@
 package com.donghao.register.demo.register.server.controller;
 
+import java.util.Map;
+
 import com.donghao.register.demo.register.common.constants.ResponseStatusConstants;
 import com.donghao.register.demo.register.common.pojo.*;
 import com.donghao.register.demo.register.server.pojo.Registry;
@@ -61,5 +63,14 @@ public class RegisterController {
       return response;
     }
     return response;
+  }
+
+  /**
+   * 拉取注册表信息
+   * 
+   * @return 注册表信息
+   */
+  public Map<String, Map<String, ServiceInstance>> fetchServiceRegistry() {
+    return registry.getRegistry();
   }
 }

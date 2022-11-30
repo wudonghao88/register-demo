@@ -31,7 +31,7 @@ public class Registry {
     /**
      *
      */
-    public void register(ServiceInstance serviceInstance) {
+    public synchronized void register(ServiceInstance serviceInstance) {
         Map<String, ServiceInstance> serviceInstanceMap = registry.computeIfAbsent(serviceInstance.getServiceName(), k -> new HashMap<>());
         serviceInstanceMap.put(serviceInstance.getServiceInstanceId(), serviceInstance);
         System.out.println("服务实例：" + serviceInstance.toString() + " 完成注册");
@@ -45,7 +45,7 @@ public class Registry {
      * @param serviceInstanceId 实例id
      * @return 实例信息
      */
-    public ServiceInstance getServiceInstance(String serviceName, String serviceInstanceId) {
+    public synchronized ServiceInstance getServiceInstance(String serviceName, String serviceInstanceId) {
         Map<String, ServiceInstance> serviceInstanceMap = registry.get(serviceName);
         if (serviceInstanceMap == null) {
             System.out.println("心跳续约失败！服务名称为：" + serviceName + "的服务没有注册到注册中心。");
@@ -65,7 +65,7 @@ public class Registry {
      *
      * @return 注册表信息
      */
-    public Map<String, Map<String, ServiceInstance>> getRegistry() {
+    public synchronized Map<String, Map<String, ServiceInstance>> getRegistry() {
         return registry;
     }
 
@@ -74,7 +74,7 @@ public class Registry {
      *
      * @param serviceInstance serviceInstance
      */
-    public void remove(ServiceInstance serviceInstance) {
+    public synchronized void remove(ServiceInstance serviceInstance) {
         if (serviceInstance == null) {
             return;
         }

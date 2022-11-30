@@ -2,6 +2,7 @@ package com.donghao.register.demo.register.client;
 
 import java.util.UUID;
 
+import com.donghao.register.demo.register.client.cache.ClientCacheServiceRegistry;
 import com.donghao.register.demo.register.client.tools.HttpSender;
 import com.donghao.register.demo.register.common.constants.ResponseCodeConstants;
 import com.donghao.register.demo.register.common.pojo.HeartbeatRequest;
@@ -20,6 +21,8 @@ public class RegisterClient {
   private RegisterWorker registerWorker;
 
   private HeartbeatWorker heartbeatWorker;
+
+  private ClientCacheServiceRegistry registry;
 
   public static final String SERVICE_NAME = "inventory-service";
 
@@ -51,6 +54,7 @@ public class RegisterClient {
     this.serviceInstanceId = UUID.randomUUID().toString().replace("-", "");
     this.registerWorker = new RegisterWorker();
     this.heartbeatWorker = new HeartbeatWorker();
+    this.registry = new ClientCacheServiceRegistry(this, httpSender);
   }
 
   public void start() {
@@ -63,6 +67,8 @@ public class RegisterClient {
       this.registerWorker.start();
       this.registerWorker.join();
       this.heartbeatWorker.start();
+      // 初始化注册表缓存信息
+      registry.initialize();
     } catch (InterruptedException e) {
       throw new RuntimeException(e);
     }
@@ -71,6 +77,7 @@ public class RegisterClient {
   public void shutdown() {
     isRunning = false;
     this.heartbeatWorker.interrupt();
+    this.registry.destroy();
   }
 
   /**
@@ -134,5 +141,14 @@ public class RegisterClient {
         }
       }
     }
+  }
+
+  /**
+   * 返回registerClient是否正在运行
+   * 
+   * @return isRunning
+   */
+  public boolean isRunning() {
+    return isRunning;
   }
 }

@@ -7,7 +7,7 @@ import com.donghao.register.demo.register.server.pojo.Registry;
 import com.donghao.register.demo.register.server.pojo.SelfprotectionPolicy;
 
 /**
- * 微服务存货状态监控后台线程
+ * 微服务存活状态监控后台线程
  *
  * @author donghao.wu
  */

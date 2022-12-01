@@ -4,6 +4,7 @@ import java.util.Map;
 
 import com.donghao.register.demo.register.common.pojo.ServiceInstance;
 import com.donghao.register.demo.register.server.pojo.Registry;
+import com.donghao.register.demo.register.server.pojo.SelfprotectionPolicy;
 
 /**
  * 微服务存货状态监控后台线程
@@ -63,6 +64,15 @@ public class ServiceAliveMonitor {
 
       Map<String, Map<String, ServiceInstance>> registryMap;
       while (isRunning) {
+        SelfprotectionPolicy selfprotectionPolicy = SelfprotectionPolicy.getInstance();
+        if (!selfprotectionPolicy.isEnable()) {
+          try {
+            Thread.sleep(1000L);
+          } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+          }
+          continue;
+        }
         try {
           registryMap = registry.getRegistry();
           if (registryMap == null || registryMap.size() == 0) {
@@ -80,9 +90,18 @@ public class ServiceAliveMonitor {
               // 校验服务实例心跳续约时间是否长于过期时间
               if (serviceInstance.verifyLoseEfficacy(TTL)) {
                 // 长于过期时间则 认为服务已经宕机 从注册表中删除该服务实例
-                registry.remove(serviceInstance);
+                registry.remove(serviceInstance.getServiceName(), serviceInstance.getServiceInstanceId());
+
+                // 增加自我保护机制期望心跳次数，并根据最新的期望心跳次数更新阈值
+                // todo 其实可以把对方的心跳间隔时间也传过来这样计算之后增加才是正解
+                synchronized (SelfprotectionPolicy.class) {
+                  selfprotectionPolicy.setExpectedHeartbeatRate(selfprotectionPolicy.getExpectedHeartbeatRate() - 2);
+                  // 比率也可以设置为yml参数
+                  selfprotectionPolicy.setExpectedHeartbeatThreshold((long) (selfprotectionPolicy.getExpectedHeartbeatRate() * 0.85));
+                }
               }
             }
+
           }
           Thread.sleep(60 * 1000L);
         } catch (InterruptedException e) {

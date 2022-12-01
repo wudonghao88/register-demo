@@ -8,11 +8,11 @@ import java.util.Map;
 
 import com.alibaba.fastjson.JSONObject;
 import com.donghao.register.demo.register.common.constants.ResponseStatusConstants;
-
 import com.donghao.register.demo.register.common.pojo.HeartbeatRequest;
 import com.donghao.register.demo.register.common.pojo.RegisterRequest;
 import com.donghao.register.demo.register.common.pojo.RegisterResponse;
 import com.donghao.register.demo.register.common.pojo.ServiceInstance;
+
 import okhttp3.*;
 
 /**
@@ -99,14 +99,13 @@ public class HttpSender {
     return res;
   }
 
-
   /**
    * 拉取服务注册表
+   * 
    * @return
    */
   public Map<String, Map<String, ServiceInstance>> fetchServiceRegistry() {
-    Map<String, Map<String, ServiceInstance>> registry =
-            new HashMap<String, Map<String, ServiceInstance>>();
+    Map<String, Map<String, ServiceInstance>> registry = new HashMap<String, Map<String, ServiceInstance>>();
 
     ServiceInstance serviceInstance = new ServiceInstance();
     serviceInstance.setHostname("finance-service-01");
@@ -124,4 +123,9 @@ public class HttpSender {
 
     return registry;
   }
+
+  public void cancel(String serviceName, String serviceInstanceId) {
+    System.out.println("服务实例下线。服务名称：" + serviceName + "，实例id:" + serviceInstanceId);
+  }
+
 }
